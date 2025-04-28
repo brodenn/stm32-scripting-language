@@ -1,0 +1,26 @@
+# --- Startup section ---
+loop 3
+    set PA5 1
+    wait 150
+    toggle PA5
+    wait 150
+endloop
+
+print Startup Completed!\n
+printNum 123
+print \n
+printCount
+
+if PC13 == 0 then
+    print Button is pressed during startup!\n
+    toggle PA5
+end
+
+end   # <--- IMPORTANT! (opcode 0x07)
+
+# --- Interrupt section ---
+on PC13 falling then
+    print [INTERRUPT] Button was pressed!\n
+    toggle PA5
+    print [INTERRUPT END]\n
+end
